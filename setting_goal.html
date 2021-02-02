@@ -1,0 +1,235 @@
+<html>
+    <head>
+        <title >目標設定</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        
+        <style>
+            @media (min-width: 600px) {
+                #parent {
+                    display: flex;
+                }
+                #child1 {
+                    flex-grow: 1;
+                }
+                #child2 { 
+                    flex-grow: 1;
+                }
+            }
+        </style>
+            
+        <style>
+            @media (min-width: 600px) {
+                #parent2 {
+                    display: flex;
+                }
+                #column1 {
+                    flex-grow: 1;
+                }
+                #column2 { 
+                    flex-grow: 4;
+                }
+            }
+        </style>
+    </head>
+    <body> 
+        <h2>期間設定</h2>
+        <div>
+            <font size="4">開始日</font>
+            <input type="text" id="flatpickr" style="font-size:25px;width:250px;height:30px;"></input>
+            <font size="4"> ～ </font>
+            <font size="4">終了日</font>
+            <input type="text" id="flatpickr" style="font-size:25px;width:250px;height:30px;"></input>
+        </div>
+        
+        <div id="parent">
+            <div id="child1" class="box29" style="width:0px;margin-right: 5px;margin-bottom: 10px; ">
+                    <div class="box-title" >入力欄</div>
+                    <p>
+                        <div style="margin-right: 10px;margin-left: 10px;">
+                            <label>トレーニング名</label>
+                        </div>
+                        <div style="margin-right: 10px;margin-left: 10px;margin-bottom: 10px;">
+                            <input style="width: 100%;font-size:25px;height:30px;" id="input_tarning"></>
+                        </div>
+                        <div style="margin-right: 10px;margin-left: 10px;">
+                            <label>回数/Day</label>
+                        </div>
+                        <div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
+                            <input type="number" style="width: 100%;font-size:25px;height:30px;" id="input_number_Per_day"></>
+                        </div>
+                        <div style="margin-right: 10%;margin-left: 10%;margin-bottom: 10px;">
+                            <button class="button8" type="submit" style="width:100%;" onclick="OnButtonClick();">
+                                追加ボタン
+                                <script type="text/javascript">
+                                class Training {
+                                    constructor(trainingName, numberTimes) {
+                                        this.trainingName = trainingName;
+                                        this.numberTimes = numberTimes;
+                                    }
+                                }
+                                
+                                var traningList = [];
+                                var id = 0;
+
+                                function OnButtonClick() {
+                                    var trainingName = document.getElementById("input_tarning").value;
+                                    var numberTimes = Number(document.getElementById("input_number_Per_day").value);
+                                    if(trainingName != "" && numberTimes > 0){
+                                        id++;
+                                        traningList.push(new Training(trainingName,numberTimes));
+                                        const ul = document.getElementById("ul");
+                                        const div1 = document.createElement("div");
+                                        const setMenu = document.createElement("span");
+                                        const p = document.createElement("p");
+                                        const p2 = document.createElement("p");
+
+                                        div1.setAttribute("class","box26");
+                                        div1.setAttribute("id","tmp" + id);
+                                        div1.setAttribute("style","background-color: white;margin-bottom: 20px; ")
+                                        
+                                        setMenu.setAttribute("class","box-title");
+                                        setMenu.textContent = "メニュー" + id;
+
+                                        p.textContent = trainingName;
+                                        p2.textContent = numberTimes + " 回/Day";
+
+                                        ul.append(div1);
+                                        div1.appendChild(setMenu);
+                                        div1.appendChild(p);
+                                        div1.appendChild(p2);
+                                        console.log(traningList);
+                                    }
+                                    else{
+                                        console.log("can't insert");
+                                        console.log(traningList);
+                                    }
+                                }
+                                </script>
+                            </button>
+                        </div>
+                    </p>
+            </div>
+            <div id="child2" class="box29" style="width:0px;margin-right: 5px;">
+                <div class="box-title">設定トレーニング一覧</div>
+                <p>
+                    <div id="ul" style="padding-left: 5%;padding-right: 5%;">
+
+                    </div>
+                    <div style="margin-left: 10%;margin-right: 10%;">
+                        <button class="button8" type="submit" style="width:100%;">設定完了</button>
+                    </div>
+                </p>
+            </div>    
+        </div>
+        <script>
+            flatpickr("#flatpickr", {});
+        </script>
+    </body>
+</html>
+
+<style type="text/css">
+    .box26 {
+        position: relative;
+        margin: 2e 0;
+        padding: 0.5em 1em;
+        border: solid 3px #95ccff;
+        border-radius: 8px;
+    }
+    .box26 .box-title {
+        position: absolute;
+        display: inline-block;
+        top: -13px;
+        left: 10px;
+        padding: 0 9px;
+        line-height: 1;
+        font-size: 19px;
+        background: #FFF;
+        color: #95ccff;
+        font-weight: bold;
+    }
+    .box26 p {
+        margin: 0; 
+        padding: 0;
+    }
+    .box29 {
+        margin: 2em 0;
+        background: #dcefff;
+    }
+    .box29 .box-title {
+        font-size: 1.2em;
+        background: #5fb3f5;
+        padding: 4px;
+        text-align: center;
+        color: #FFF;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+    }
+    .box29 p {
+        padding: 15px 20px;
+        margin: 0;
+    }
+    form{
+    width:460px;
+    margin:0 auto;
+    }
+    .item{
+    overflow: hidden;
+    margin-bottom: 20px;
+    }
+    h2 {
+    padding: 1rem 2rem;
+    color: #fff;
+    background: #5fb3f5;
+    -webkit-box-shadow: 5px 5px 0  #5f77f5;
+    box-shadow: 5px 5px 0  #5f77f5;
+    }
+    button.button8 {
+        /* 文字サイズを1.4emに指定 */
+        font-size: 1.4em;
+
+        /* 文字の太さをboldに指定 */
+        font-weight: bold;
+
+        /* 縦方向に10px、
+        * 横方向に30pxの余白を指定 */
+        padding: 10px 30px;
+
+        /* 文字色を白色に指定 */
+        color: #fff;
+
+        /* ボーダーをなくす */
+        border-style: none;
+
+        /* ボタンの影の指定
+        * 影の横幅を2px
+        * 縦長を2px
+        * ぼかしを3px
+        * 広がりを1px
+        * 色を#666（グレー）に指定 */
+        box-shadow: 2px 2px 3px 1px #666;
+        -moz-box-shadow: 2px 2px 3px 1px #666;
+        -webkit-box-shadow: 2px 2px 3px 1px #666;
+
+        /* テキストの影の指定
+        * 影の横幅を1px
+        * 縦長を1px
+        * ぼかしを2px
+        * 色を#000（黒）に指定 */
+        text-shadow: 1px 1px 2px #000;
+
+        /* グラデーションの指定 */
+        background: -moz-linear-gradient(bottom,  #5fb3f5, #248 50%,   #5fb3f5);
+        background: -webkit-gradient(linear, left bottom, left top, from( #5fb3f5), color-stop(0.5,   #5f83f5), to(  #5fb3f5));
+
+        /* 角丸の指定 */
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    button.button8:hover {
+        /* 透明度を20%に指定 */
+        opacity: 0.8;
+    }
+</style>
