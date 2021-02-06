@@ -1,25 +1,51 @@
 var db = firebase.firestore();
 var calender = [];
 var today = new Date();
-console.log(today)
+//console.log(today)
+
+
+//一か月カレンダーづくり
 for(let i = 0; i<30; i++){
-    calender.push({date:new Date(today), count:0})
+    calender.push({date:new Date(today), count:-1, rate:-1})
     today.setDate(today.getDate() - 1);
 }
+//console.log > foreach
+//console.log(calender)
 
-console.log(calender)
+//運動日程が存在する日に0を入れる
 db.collection("goal").get().then((querySnapshot)=>{
     querySnapshot.forEach((doc) => {
-        console.log(`${doc.data().startDate.toDate()}`);
+        //console.log(`${doc.data().startDate.toDate()}`);
         calender.forEach((v)=> {
+            //console.log(calender)
             if(isBetweenDay(doc.data().startDate.toDate(), doc.data().endDate.toDate(), v.date)){
-                v.count ++;
+                v.count = 0;
             }
-        })
+        });
         
     });
-    console.log(calender);
 });
+console.log(calender);
+
+//v.count 0は少なくとも練習すべき日なので，データベースから入力履歴を探す．達成割合を求めて格納
+// db.collection("dairyachive").get().then((querySnapshot)=>{
+//     querySnapshot.forEach((doc) => {
+//         //割合を入れる
+//         calender.forEach((v)=> {
+//         })
+//     });
+// });
+db.collection("dairyachive").get().then((querySnapshot)=>{
+    calender.forEach((v)=>{
+        //v.count-1のまま．．
+        console.log(v.count)
+        if(v.count==0){
+            v.rate = 0;
+        }
+    });
+
+})
+console.log(calender);
 
 function isBetweenDay(startdate, enddate, date){
     const start_year = startdate.getYear();
@@ -42,4 +68,47 @@ function isBetweenDay(startdate, enddate, date){
         }
     }
     return false;
+}
+
+//過去の設定トレーニング表示
+// var trainStartDays = [];
+// db.collection("goal").get().then((querySnapshot)=>{
+//     querySnapshot.forEach((doc)=> {
+//         trainStartDays.push({date: new Date(doc.data().startDate.toDate())})
+//     });
+// });
+// console.log(trainStartDays)
+// var set = new Set(trainStartDays);
+
+//色決め
+function judgeColor(num){
+    if(num<0.0){
+        return "#000000"
+    }
+    if(num<0.2){
+        return "#00FF00"
+    }
+    if(num<0.4){
+        return "#00BB00"
+    }
+    if(num<0.6){
+        return "#008800"
+    }
+    if(num<0.8){
+        return "#004400"
+    }
+    if(num==1.0){
+        return "#001100"
+    }
+
+}
+
+var displayButton = document.getElementById("displaybutton");
+//クリックイベント
+displayButton.onclick = ()=>{
+    /*ここで得たselected_rangeで過去のデータ表示範囲を決定*/
+    var r_element = document.getElementById("range");
+    var selected_range = r_element.value;
+    console.log(selected_range);
+
 }

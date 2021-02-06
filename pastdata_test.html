@@ -42,15 +42,15 @@
 	     <option value="lastweek">最近1週間</option>
 	     <option value="lastmonth">最近1か月</option>
 	    </select>
-	    <input type="button" value="表示" onclick="clickrBtn()" id="lbutton">
-	    <script>
+	    <input type="button" value="表示"  id="displaybutton">
+	    <!-- <script>
 	      function clickrBtn(){
 	      /*ここで得たselected_rangeで過去のデータ表示範囲を決定*/
 	      var r_element = document.getElementById("range");
 	      var selected_range = r_element.value;
 	      console.log(selected_range);
 	      }
-	    </script>
+	    </script> -->
         </div>
         
         <div id="parent">
@@ -61,7 +61,7 @@
                     
             </div>
             <div id="child2" class="box69" style="width:0px;margin-right: 5px;">
-              <div class="box-title">過去の設定トレーニング一覧</div>
+              <div class="box-title">全ての設定トレーニング一覧</div>
 	      <p>
                     <div style="padding-left: 5%; padding-right:5%;">
                         <!-- <script>
@@ -84,6 +84,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
         <script src="firebase_init.js"></script>
         <script src="past.js"></script>
+        <!-- <script src="past_test.js"></script> -->
 	
     </body>
 </html>
