@@ -1,4 +1,4 @@
-var db = firebase.firestore();
+(async ()=>{var db = firebase.firestore();
 var calender = [];
 var today = new Date();
 //console.log(today)
@@ -13,7 +13,7 @@ for(let i = 0; i<30; i++){
 //console.log(calender)
 
 //運動日程が存在する日に0を入れる
-db.collection("goal").get().then((querySnapshot)=>{
+await db.collection("goal").get().then((querySnapshot)=>{
     querySnapshot.forEach((doc) => {
         //console.log(`${doc.data().startDate.toDate()}`);
         calender.forEach((v)=> {
@@ -71,14 +71,24 @@ function isBetweenDay(startdate, enddate, date){
 }
 
 //過去の設定トレーニング表示
-// var trainStartDays = [];
-// db.collection("goal").get().then((querySnapshot)=>{
-//     querySnapshot.forEach((doc)=> {
-//         trainStartDays.push({date: new Date(doc.data().startDate.toDate())})
-//     });
-// });
-// console.log(trainStartDays)
-// var set = new Set(trainStartDays);
+var trainStartDays = [];
+db.collection("goal").orderBy("startDate", "desc").get().then((querySnapshot)=>{
+    querySnapshot.forEach((doc)=> {
+        trainStartDays.push({
+            startDate: new Date(doc.data().startDate.toDate()), 
+            endDate: new Date(doc.data().endDate.toDate()), 
+            trainingName: doc.data().trainingName,
+            numberTimes: doc.data().numberTimes,
+            valueType: doc.data().valueType})
+    });
+    //console.log(trainStartDays)
+    
+});
+
+
+
+})()
+
 
 //色決め
 function judgeColor(num){
