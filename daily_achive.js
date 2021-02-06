@@ -6,10 +6,38 @@ var itemsCount;
 var dayArea = document.getElementById("today");
 var saveButton = document.getElementById("checkArea-button");
 
-console.log(today)
+let evPoint = 0;
+var lastinputPoint = 0;
+var today_to_String = "";
+var get_documentDate_String = "";
+
+var termDay;
+
+console.log(today);
+
+var docRef = db.collection("evolutionPoints").doc("evolutionDocument");
+docRef.get().then(function(doc) {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+        evPoint = doc.data().evPoint;
+        get_documentDate_String = doc.data().lastwriteDate;
+        lastinputPoint = Number(doc.data().lastinputPoint);
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        evPoint = 0;
+        lastinputPoint = 0;
+    }
+}).catch(function(error) {
+    evPoint = 0;
+    lastinputPoint = 0;
+    console.log("Error getting document:", error);
+});
 
 db.collection("goal").get().then((querySnapshot)=>{
-    dayArea.innerHTML = today.getFullYear() + "/" + (1 + today.getMonth()) + "/" + today.getDay();
+    today_to_String = today.getFullYear() + "-" + (1 + today.getMonth()) + "-" + today.getDate();
+    
+    dayArea.innerHTML = today.getFullYear() + "/" + (1 + today.getMonth()) + "/" + today.getDay();;
 
     console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
@@ -66,6 +94,7 @@ function isBetweenDay(startdate, enddate, date){
     if(start_year<=date_year && date_year <= end_year){
         if(start_month<=date_month && date_month <= end_month){
             if(start_day<=date_day && date_day <= end_day){
+                termDay = 1 + (enddate - startdate) / 86400000;
                 return true;
             }
             
@@ -77,15 +106,56 @@ function isBetweenDay(startdate, enddate, date){
 saveButton.onclick = ()=>{
     var checkCount = 0;
     const checkboxArray = document.getElementsByName("checkBoxes");
+
+    var to_collect_evPoint = 0;
+
     for (let i = 0; i < checkboxArray.length; i++){
 		if(checkboxArray[i].checked){ //(color1[i].checked === true)と同じ
 			checkCount++;
+            to_collect_evPoint += (100 / (termDay * checkboxArray.length));
 		}
 	}
     console.log(today,itemsCount,checkCount);
-    db.collection("daily_achive").add({
+    db.collection("daily_achive").doc(today_to_String).set({
         date: today,
         toAchive: itemsCount,
         achivementNum: checkCount
-    })
+    });
+    
+    if(today_to_String == get_documentDate_String){
+        evPoint -= lastinputPoint;
+    }
+    else{
+    }
+    
+    evPoint += to_collect_evPoint;
+
+    db.collection("evolutionPoints").doc("evolutionDocument").set({
+        evPoint: evPoint,
+        lastwriteDate: today_to_String,
+        lastinputPoint: to_collect_evPoint
+    });
+
+
+    console.log("evPoints",evPoint,to_collect_evPoint,lastinputPoint);
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            evPoint = doc.data().evPoint;
+            get_documentDate_String = doc.data().lastwriteDate;
+            lastinputPoint = Number(doc.data().lastinputPoint);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+            evPoint = 0;
+            lastinputPoint = 0;
+        }
+    }).catch(function(error) {
+        evPoint = 0;
+        lastinputPoint = 0;
+        console.log("Error getting document:", error);
+    });
+    function readEvPoint(){
+
+    }
 }
