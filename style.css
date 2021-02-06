@@ -25,11 +25,11 @@ input[type="radio"]{
 }
 .tab_area{
     font-size:0; 
-    margin:0 10px;
+    margin:0;
 }
 .tab_area label{
-    width:203px;
-    margin:0 4px; 
+    width:24.5%;
+    margin:0 2px; 
     display:inline-block; 
     padding:12px 0; 
     color:rgb(63, 59, 59); 
@@ -38,6 +38,7 @@ input[type="radio"]{
     font-size:13px; 
     cursor:pointer; 
     transition:ease 0.2s opacity;
+    border-radius: 5px 5px 0 0;
 }
 .tab_area label:hover{
     background-color: #6DB38B;
