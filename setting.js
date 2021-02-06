@@ -20,11 +20,19 @@ var saveButton = document.getElementById("save-button");
 saveButton.onclick = ()=>{
     var startDate = document.getElementById("flatpickr").value;
     var endDate = document.getElementById("flatpickr2").value;
-    console.log(traningList)
-    traningList.forEach((training)=>{
+    if(!startDate || !endDate){
+        return;
+    }
+
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
+
+    console.log(trainingList)
+    trainingList.forEach((training)=>{
         db.collection("goal").add({
             trainingName: training.trainingName,
             numberTimes: training.numberTimes,
+            valueType: training.valueType,
             startDate: startDate,
             endDate: endDate
         })

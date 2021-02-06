@@ -43,7 +43,7 @@
         </div>
         
         <div id="parent">
-            <div id="child1" class="box29" style="width:0px;margin-right: 5px;margin-bottom: 10px; ">
+            <div id="child1" class="box29" style="width:0px;margin-right: 5px;">
                     <div class="box-title" >入力欄</div>
                     <p>
                         <div style="margin-right: 10px;margin-left: 10px;">
@@ -53,7 +53,10 @@
                             <input style="width: 100%;font-size:25px;height:30px;" id="input_tarning"></>
                         </div>
                         <div style="margin-right: 10px;margin-left: 10px;">
-                            <label>回数/Day</label>
+                            <select id="value-type" name="dropdown_Menu">
+                                <option value="cnt">回数/Day</option>
+                                <option value="sec">秒</option>
+                            </select>
                         </div>
                         <div style="margin-right: 10px;margin-left: 10px;margin-bottom: 30px;">
                             <input type="number" style="width: 100%;font-size:25px;height:30px;" id="input_number_Per_day"></>
@@ -61,16 +64,34 @@
                         <div style="margin-right: 10%;margin-left: 10%;margin-bottom: 10px;">
                             <button class="button8" type="submit" style="width:100%;" onclick="OnButtonClick();">
                                 追加ボタン
-                                
+                                <script>
+                                    class Training {
+                                        constructor(trainingName,numberTimes,_valueType){
+                                            this.trainingName = trainingName;
+                                            this.numberTimes = numberTimes;
+                                            this.valueType = _valueType;
+                                        }
+                                    }
                                 var trainingList = [];
                                 var id = 0;
 
                                 function OnButtonClick() {
+                                    // 回数か秒か
                                     var trainingName = document.getElementById("input_tarning").value;
                                     var numberTimes = Number(document.getElementById("input_number_Per_day").value);
+                                    var unit;
+                                    var valueType;
+                                    if(document.getElementById("value-type").value == "cnt"){
+                                        valueType = 0;
+                                        unit = " 回/Day";
+                                    }
+                                    else{
+                                        valueType = 1;
+                                        unit = " 秒"; 
+                                    }
                                     if(trainingName != "" && numberTimes > 0){
                                         id++;
-                                        trainingList.push(new Training(trainingName,numberTimes));
+                                        trainingList.push(new Training(trainingName,numberTimes,valueType));
                                         const ul = document.getElementById("ul");
                                         const div1 = document.createElement("div");
                                         const setMenu = document.createElement("span");
@@ -85,7 +106,7 @@
                                         setMenu.textContent = "メニュー" + id;
 
                                         p.textContent = trainingName;
-                                        p2.textContent = numberTimes + " 回/Day";
+                                        p2.textContent = numberTimes + unit;
 
                                         ul.append(div1);
                                         div1.appendChild(setMenu);
@@ -118,52 +139,6 @@
         <script>
             flatpickr("#flatpickr", {});
             flatpickr("#flatpickr2", {});
-        </script>
-
-    <script type="text/javascript">
-        class Training {
-            constructor(trainingName, numberTimes) {
-                this.trainingName = trainingName;
-                this.numberTimes = numberTimes;
-            }
-        }
-    
-        var traningList = [];
-        var id = 0;
-
-        function OnButtonClick() {
-            var trainingName = document.getElementById("input_tarning").value;
-            var numberTimes = Number(document.getElementById("input_number_Per_day").value);
-            if(trainingName != "" && numberTimes > 0){
-                id++;
-                traningList.push(new Training(trainingName,numberTimes));
-                const ul = document.getElementById("ul");
-                const div1 = document.createElement("div");
-                const setMenu = document.createElement("span");
-                const p = document.createElement("p");
-                const p2 = document.createElement("p");
-
-                div1.setAttribute("class","box26");
-                div1.setAttribute("id","tmp" + id);
-                div1.setAttribute("style","background-color: white;margin-bottom: 20px; ")
-                
-                setMenu.setAttribute("class","box-title");
-                setMenu.textContent = "メニュー" + id;
-
-                p.textContent = trainingName;
-                p2.textContent = numberTimes + " 回/Day";
-
-                ul.append(div1);
-                div1.appendChild(setMenu);
-                div1.appendChild(p);
-                div1.appendChild(p2);
-                console.log(traningList);
-            }
-            else{
-                console.log("can't insert");
-                console.log(traningList);
-            }
-        }
         </script>
         <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
