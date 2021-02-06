@@ -18,8 +18,8 @@ var db = firebase.firestore();
 // });
 var saveButton = document.getElementById("save-button");
 saveButton.onclick = ()=>{
-    console.log(traningList)
-    traningList.forEach((training)=>{
+    console.log(trainingList)
+    trainingList.forEach((training)=>{
         db.collection("goal").add({
             trainingName: training.trainingName,
             numberTimes: training.numberTimes
