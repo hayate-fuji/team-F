@@ -39,7 +39,7 @@
             <input type="text" id="flatpickr" style="font-size:25px;width:250px;height:30px;"></input>
             <font size="4"> ～ </font>
             <font size="4">終了日</font>
-            <input type="text" id="flatpickr" style="font-size:25px;width:250px;height:30px;"></input>
+            <input type="text" id="flatpickr2" style="font-size:25px;width:250px;height:30px;"></input>
         </div>
         
         <div id="parent">
@@ -61,51 +61,7 @@
                         <div style="margin-right: 10%;margin-left: 10%;margin-bottom: 10px;">
                             <button class="button8" type="submit" style="width:100%;" onclick="OnButtonClick();">
                                 追加ボタン
-                                <script type="text/javascript">
-                                class Training {
-                                    constructor(trainingName, numberTimes) {
-                                        this.trainingName = trainingName;
-                                        this.numberTimes = numberTimes;
-                                    }
-                                }
                                 
-                                var traningList = [];
-                                var id = 0;
-
-                                function OnButtonClick() {
-                                    var trainingName = document.getElementById("input_tarning").value;
-                                    var numberTimes = Number(document.getElementById("input_number_Per_day").value);
-                                    if(trainingName != "" && numberTimes > 0){
-                                        id++;
-                                        traningList.push(new Training(trainingName,numberTimes));
-                                        const ul = document.getElementById("ul");
-                                        const div1 = document.createElement("div");
-                                        const setMenu = document.createElement("span");
-                                        const p = document.createElement("p");
-                                        const p2 = document.createElement("p");
-
-                                        div1.setAttribute("class","box26");
-                                        div1.setAttribute("id","tmp" + id);
-                                        div1.setAttribute("style","background-color: white;margin-bottom: 20px; ")
-                                        
-                                        setMenu.setAttribute("class","box-title");
-                                        setMenu.textContent = "メニュー" + id;
-
-                                        p.textContent = trainingName;
-                                        p2.textContent = numberTimes + " 回/Day";
-
-                                        ul.append(div1);
-                                        div1.appendChild(setMenu);
-                                        div1.appendChild(p);
-                                        div1.appendChild(p2);
-                                        console.log(traningList);
-                                    }
-                                    else{
-                                        console.log("can't insert");
-                                        console.log(traningList);
-                                    }
-                                }
-                                </script>
                             </button>
                         </div>
                     </p>
@@ -117,13 +73,60 @@
 
                     </div>
                     <div style="margin-left: 10%;margin-right: 10%;">
-                        <button class="button8" type="submit" style="width:100%;">設定完了</button>
+                        <button class="button8" id="save-button" type="submit" style="width:100%;">設定完了</button>
                     </div>
                 </p>
             </div>    
         </div>
         <script>
             flatpickr("#flatpickr", {});
+            flatpickr("#flatpickr2", {});
+        </script>
+
+    <script type="text/javascript">
+        class Training {
+            constructor(trainingName, numberTimes) {
+                this.trainingName = trainingName;
+                this.numberTimes = numberTimes;
+            }
+        }
+    
+        var traningList = [];
+        var id = 0;
+
+        function OnButtonClick() {
+            var trainingName = document.getElementById("input_tarning").value;
+            var numberTimes = Number(document.getElementById("input_number_Per_day").value);
+            if(trainingName != "" && numberTimes > 0){
+                id++;
+                traningList.push(new Training(trainingName,numberTimes));
+                const ul = document.getElementById("ul");
+                const div1 = document.createElement("div");
+                const setMenu = document.createElement("span");
+                const p = document.createElement("p");
+                const p2 = document.createElement("p");
+
+                div1.setAttribute("class","box26");
+                div1.setAttribute("id","tmp" + id);
+                div1.setAttribute("style","background-color: white;margin-bottom: 20px; ")
+                
+                setMenu.setAttribute("class","box-title");
+                setMenu.textContent = "メニュー" + id;
+
+                p.textContent = trainingName;
+                p2.textContent = numberTimes + " 回/Day";
+
+                ul.append(div1);
+                div1.appendChild(setMenu);
+                div1.appendChild(p);
+                div1.appendChild(p2);
+                console.log(traningList);
+            }
+            else{
+                console.log("can't insert");
+                console.log(traningList);
+            }
+        }
         </script>
     </body>
 </html>

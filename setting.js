@@ -18,11 +18,15 @@ var db = firebase.firestore();
 // });
 var saveButton = document.getElementById("save-button");
 saveButton.onclick = ()=>{
+    var startDate = document.getElementById("flatpickr").value;
+    var endDate = document.getElementById("flatpickr2").value;
     console.log(traningList)
     traningList.forEach((training)=>{
         db.collection("goal").add({
             trainingName: training.trainingName,
-            numberTimes: training.numberTimes
+            numberTimes: training.numberTimes,
+            startDate: startDate,
+            endDate: endDate
         })
     })
 }
