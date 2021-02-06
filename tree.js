@@ -45,7 +45,7 @@ const doc = await db.collection("monster").doc("1").get();
     if (monster != undefined) { 
         document.getElementById("monster").setAttribute("src", monster.image) 
     }
-    var point = 55;
+    var point = 10;
     document.getElementById("point").innerText = point;
     if (monster == undefined) {
         db.collection("monster").doc("1").set({
