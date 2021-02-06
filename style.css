@@ -40,6 +40,7 @@ input[type="radio"]{
     transition:ease 0.2s opacity;
     border-radius: 5px 5px 0 0;
 }
+
 .tab_area label:hover{
     background-color: #6DB38B;
 }
@@ -90,12 +91,17 @@ input[type="radio"]{
 
 .tree {
     width: 30%;
-    height: 300px;
+    height: 500px;
     margin: 0 0 0 auto;
     position: absolute;
     top: 50px;
     right: 0;
     background: #fff;
+    text-align: center;
+}
+
+.tree #monster {
+    width: 300px;
 }
 
 #松尾匠追記部分
