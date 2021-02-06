@@ -3,11 +3,14 @@ var today = new Date();
 var todaysMenus = [];
 var itemsCount;
 
+var dayArea = document.getElementById("today");
 var saveButton = document.getElementById("checkArea-button");
 
 console.log(today)
 
 db.collection("goal").get().then((querySnapshot)=>{
+    dayArea.innerHTML = today.getFullYear() + "/" + (1 + today.getMonth()) + "/" + today.getDay();
+
     console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
         console.log(`${doc.data().startDate.toDate()}`);
@@ -24,6 +27,7 @@ db.collection("goal").get().then((querySnapshot)=>{
 
         var idName = "checkbox" + i;
 
+        checkBox.setAttribute("name","checkBoxes");
         checkBox.setAttribute("type","checkbox");
         checkBox.setAttribute("id",idName);
         checkBox_label.setAttribute("for",idName);
@@ -70,6 +74,18 @@ function isBetweenDay(startdate, enddate, date){
     return false;
 }
 
-saveButton.onclick= ()=>{
-    
+saveButton.onclick = ()=>{
+    var checkCount = 0;
+    const checkboxArray = document.getElementsByName("checkBoxes");
+    for (let i = 0; i < checkboxArray.length; i++){
+		if(checkboxArray[i].checked){ //(color1[i].checked === true)と同じ
+			checkCount++;
+		}
+	}
+    console.log(today,itemsCount,checkCount);
+    db.collection("daily_achive").add({
+        date: today,
+        toAchive: itemsCount,
+        achivementNum: checkCount
+    })
 }
