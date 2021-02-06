@@ -1,211 +1,48 @@
-<script>
-window.onload = function() {
+const monsters = [
+    {id:1,name:"hogehoge",image:"/image/0_lion.png"},
+    {id:2,name:"hogehoge",image:"/image/1_lion.png"},
+    {id:3,name:"hogehoge",image:"/image/2_milmkoreo.png"},
+    {id:4,name:"hogehoge",image:"/image/3_bushinrion.png"},
 
- var suba = document.getElementById('submita');
- var subb = document.getElementById('submitb');
- var subc = document.getElementById('submitc');
- var subd = document.getElementById('submitd');
- var sube = document.getElementById('submite');
- var subf = document.getElementById('submitf');
- var subg = document.getElementById('submitg');
- var subh = document.getElementById('submith');
- var subi = document.getElementById('submiti');
- var subj = document.getElementById('submitj');
- var subk = document.getElementById('submitk');
- var subl = document.getElementById('submitl');
- var subm = document.getElementById('submitm');
- var subn = document.getElementById('submitn');
- var subo = document.getElementById('submito');
- var subp = document.getElementById('submitp');
+    {id:5,name:"hogehoge",image:"/image/0_undeadblack.png"},
+    {id:6,name:"hogehoge",image:"/image/1_fantazmablack.png"},
+    {id:7,name:"hogehoge",image:"/image/2_siryoublack.png"},
 
- var resulta = document.getElementById('resulta');
- var resultb = document.getElementById('resultb');
- var resultc = document.getElementById('resultc');
- var resultd = document.getElementById('resultd');
- var resulte = document.getElementById('resulte');
- var resultf = document.getElementById('resultf');
- var resultg = document.getElementById('resultg');
- var resulth = document.getElementById('resulth');
- var resulti = document.getElementById('resulti');
- var resultj = document.getElementById('resultj');
- var resultk = document.getElementById('resultk');
- var resultl = document.getElementById('resultl');
- var resultm = document.getElementById('resultm');
- var resultn = document.getElementById('resultn');
- var resulto = document.getElementById('resulto');
- var resultp = document.getElementById('resultp');
+    {id:8,name:"hogehoge",image:"/image/0_neko.png"},
+    {id:9,name:"hogehoge",image:"/image/1_sinkaneko.png"},
+    
+    {id:10,name:"hogehoge",image:"/image/0_kasyudeyan.png"},
+    {id:11,name:"hogehoge",image:"/image/1_egurigoriramieru.png"},
+    
+    {id:12,name:"hogehoge",image:"/image/0_amabie.png"},
+    {id:13,name:"hogehoge",image:"/image/1_amahiko.png"},
+    
+    {id:14,name:"hogehoge",image:"/image/0_nubero.png"},
+    {id:15,name:"hogehoge",image:"/image/1_nuberus.png"},
+    
+    {id:16,name:"hogehoge",image:"/image/0_keruberos.png"},
+    {id:17,name:"hogehoge",image:"/image/1_busou.png"},
+    
+    {id:18,name:"hogehoge",image:"/image/0_bani.png"},
+    {id:19,name:"hogehoge",image:"/image/1_bani.png"},
+    {id:20,name:"hogehoge",image:"/image/2_bani.png"},
+];
 
- //ボタンを押したときの処理
+// firestoreからモンスターの所持状況を取得
 
-
- suba.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resulta.innerHTML = "きずぐすりを購入しました。";
- } else {
- resulta.innerHTML = "キャンセルされました。";
- }
- };
-
- subb.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultb.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultb.innerHTML = "キャンセルされました。";
- }
- };
-
- subc.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultc.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultc.innerHTML = "キャンセルされました。";
- }
- };
-
- subd.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultd.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultd.innerHTML = "キャンセルされました。";
- }
- };
-
- sube.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resulte.innerHTML = "きずぐすりを購入しました。";
- } else {
- resulte.innerHTML = "キャンセルされました。";
- }
- };
-
- subf.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultf.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultf.innerHTML = "キャンセルされました。";
- }
- };
-
- subg.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultg.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultg.innerHTML = "キャンセルされました。";
- }
- };
-
- subh.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resulth.innerHTML = "きずぐすりを購入しました。";
- } else {
- resulth.innerHTML = "キャンセルされました。";
- }
- };
-
- subi.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resulti.innerHTML = "きずぐすりを購入しました。";
- } else {
- resulti.innerHTML = "キャンセルされました。";
- }
- };
-
- subj.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultj.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultj.innerHTML = "キャンセルされました。";
- }
- };
-
- subk.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultk.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultk.innerHTML = "キャンセルされました。";
- }
- };
-
- subl.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultl.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultl.innerHTML = "キャンセルされました。";
- }
- };
-
- subm.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultm.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultm.innerHTML = "キャンセルされました。";
- }
- };
-
- subn.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultn.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultn.innerHTML = "キャンセルされました。";
- }
- };
-
- subo.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resulto.innerHTML = "きずぐすりを購入しました。";
- } else {
- resulto.innerHTML = "キャンセルされました。";
- }
- };
-
- subp.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultp.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultp.innerHTML = "キャンセルされました。";
- }
- };
-
- subq.onclick = function() {
- var flag = confirm('種\n何かの種');
- //OKが押されたかキャンセルが押されたかのチェック
- if(flag) {
- resultq.innerHTML = "きずぐすりを購入しました。";
- } else {
- resultq.innerHTML = "キャンセルされました。";
- }
- };
-
-</script>
+const monsterListUl = document.getElementById('monsterList');
+monsters.forEach(monster => {
+    const div = document.createElement("div");
+    div.setAttribute('class','monster')
+    const li = document.createElement("li");
+    const img = document.createElement("img");
+    // ここでモンスターを所持していたらモンスターの画像を入れる
+    if(true){
+      img.setAttribute('src',monster.image);
+    }else{
+      img.setAttribute('src','/image/hatena.png');
+    }
+    li.append(img);
+    div.append(li);
+    monsterListUl.append(div);
+});

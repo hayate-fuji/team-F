@@ -12,8 +12,9 @@ for(let i = 0; i<30; i++){
 //console.log > foreach
 //console.log(calender)
 
-//運動日程が存在する日に0を入れる
-await db.collection("goal").get().then((querySnapshot)=>{
+console.log(calender)
+db.collection("goal").get().then((querySnapshot)=>{
+    console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
         //console.log(`${doc.data().startDate.toDate()}`);
         calender.forEach((v)=> {
@@ -71,10 +72,10 @@ function isBetweenDay(startdate, enddate, date){
 }
 
 //過去の設定トレーニング表示
-var trainStartDays = [];
+var trainingData = [];
 db.collection("goal").orderBy("startDate", "desc").get().then((querySnapshot)=>{
     querySnapshot.forEach((doc)=> {
-        trainStartDays.push({
+        trainingData.push({
             startDate: new Date(doc.data().startDate.toDate()), 
             endDate: new Date(doc.data().endDate.toDate()), 
             trainingName: doc.data().trainingName,
@@ -82,7 +83,7 @@ db.collection("goal").orderBy("startDate", "desc").get().then((querySnapshot)=>{
             valueType: doc.data().valueType})
     });
     //console.log(trainStartDays)
-    
+
 });
 
 

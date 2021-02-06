@@ -9,12 +9,27 @@
     </head>
     <body>
         <h2>今日のトレーニング</h2>
-        
-        <div class="hh1">
-            aaa
+        <p id="tmpResult"></p>
+        <div class="box29" style="margin-right: 5px; padding-left: 5%; padding-right: 5%;">
+            <div class="box-title" style="margin-left: -5.55%;margin-right: -5.55%;">入力欄</div>
+            <p>
+                <div class="box27">
+                    <span class="box-title">日時</span>
+                    <p id="today"></p>
+                </div>
+                <div class="box27">
+                    <span class="box-title">チェックボックス</span>
+                    <p id="checkbox_area">
+                        <div style="margin-left: 20%;margin-right: 20%;">
+                            <button class="button8" type="submit" style="width:100%;" id="checkArea-button">登録</button>
+                        </div>
+                    </p>
+                </div>
+            </p>
         </div>
+        <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
+        <script src="firebase_init.js"></script>
+        <script src="daily_achive.js"></script>
     </body>
 </html>
-
-<style>
-</style>
