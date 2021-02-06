@@ -9,6 +9,7 @@ for(let i = 0; i<30; i++){
 
 console.log(calender)
 db.collection("goal").get().then((querySnapshot)=>{
+    console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
         console.log(`${doc.data().startDate.toDate()}`);
         calender.forEach((v)=> {
