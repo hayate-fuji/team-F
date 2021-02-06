@@ -62,6 +62,43 @@
                             <button class="button8" type="submit" style="width:100%;" onclick="OnButtonClick();">
                                 追加ボタン
                                 
+                                var trainingList = [];
+                                var id = 0;
+
+                                function OnButtonClick() {
+                                    var trainingName = document.getElementById("input_tarning").value;
+                                    var numberTimes = Number(document.getElementById("input_number_Per_day").value);
+                                    if(trainingName != "" && numberTimes > 0){
+                                        id++;
+                                        trainingList.push(new Training(trainingName,numberTimes));
+                                        const ul = document.getElementById("ul");
+                                        const div1 = document.createElement("div");
+                                        const setMenu = document.createElement("span");
+                                        const p = document.createElement("p");
+                                        const p2 = document.createElement("p");
+
+                                        div1.setAttribute("class","box26");
+                                        div1.setAttribute("id","tmp" + id);
+                                        div1.setAttribute("style","background-color: white;margin-bottom: 20px; ")
+                                        
+                                        setMenu.setAttribute("class","box-title");
+                                        setMenu.textContent = "メニュー" + id;
+
+                                        p.textContent = trainingName;
+                                        p2.textContent = numberTimes + " 回/Day";
+
+                                        ul.append(div1);
+                                        div1.appendChild(setMenu);
+                                        div1.appendChild(p);
+                                        div1.appendChild(p2);
+                                        console.log(trainingList);
+                                    }
+                                    else{
+                                        console.log("can't insert");
+                                        console.log(trainingList);
+                                    }
+                                }
+                                </script>
                             </button>
                         </div>
                     </p>
@@ -73,7 +110,7 @@
 
                     </div>
                     <div style="margin-left: 10%;margin-right: 10%;">
-                        <button class="button8" id="save-button" type="submit" style="width:100%;">設定完了</button>
+                        <button class="button8" type="submit" style="width:100%;" id="save-button">設定完了</button>
                     </div>
                 </p>
             </div>    
@@ -128,6 +165,10 @@
             }
         }
         </script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
+        <script src="firebase_init.js"></script>
+        <script src="setting.js"></script>
     </body>
 </html>
 
