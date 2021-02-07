@@ -3,8 +3,9 @@
         <title >過去のデータ</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <link rel="stylesheet" href="style.css">
         
-        <style>
+        <!-- <style>
             @media (min-width: 600px) {
                 #parent {
                     display: flex;
@@ -16,7 +17,7 @@
                     flex-grow: 1;
                 }
             }
-        </style>
+        </style> -->
             
         <style>
             @media (min-width: 600px) {
@@ -33,7 +34,7 @@
         </style>
     </head>
     <body> 
-        <h2>表示範囲</h2>
+        <!-- <h2>表示範囲</h2>
         <div>
           <font size="4">表示範囲</font>
 	  
@@ -42,7 +43,7 @@
 	     <option value="lastweek">最近1週間</option>
 	     <option value="lastmonth">最近1か月</option>
 	    </select>
-	    <input type="button" value="表示"  id="displaybutton">
+	    <input type="button" value="表示"  id="displaybutton"> -->
 	    <!-- <script>
 	      function clickrBtn(){
 	      /*ここで得たselected_rangeで過去のデータ表示範囲を決定*/
@@ -53,17 +54,12 @@
 	    </script> -->
         </div>
         
-        <div id="parent">
-            <div id="child1" class="box69" style="width:0px;margin-right: 5px;margin-bottom: 10px; ">
-                    <div class="box-title" >過去のデータ</div>
-                    
-                        
-                    
-            </div>
-            <div id="child2" class="box69" style="width:0px;margin-right: 5px;">
+        
+            <div class="box69" style="width:100%;margin-right: 5px;">
               <div class="box-title">全ての設定トレーニング一覧</div>
 	      <p>
-                    <div style="padding-left: 5%; padding-right:5%;">
+                    <div style="padding-left: 5%; padding-right:5%; " id="pastDatas">
+                        
                         <!-- <script>
                         var db = firebase.firestore();
                         db.collection("st").get().then((querySnapshot)=>{
@@ -74,7 +70,7 @@
                         </script> -->
                     </div>
                 </p>
-            </div>    
+              
         </div>
         <script>
             flatpickr("#flatpickr", {});

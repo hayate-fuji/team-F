@@ -80,16 +80,57 @@ db.collection("goal").orderBy("startDate", "desc").get().then((querySnapshot)=>{
             endDate: new Date(doc.data().endDate.toDate()), 
             trainingName: doc.data().trainingName,
             numberTimes: doc.data().numberTimes,
-            valueType: doc.data().valueType})
-    });
+            valueType: doc.data().valueType
+        })
     //console.log(trainStartDays)
 
+    const pastD = document.getElementById("pastDatas");
+    const div = document.createElement("div");
+    const span = document.createElement("span");
+    const checkBox = document.createElement("label");
+    const checkBox_label = document.createElement("label");
+
+    //var idName = "checkbox" + i;
+
+    div.setAttribute("class","box27");
+    //checkBox.setAttribute("type","checkbox");
+    //checkBox.setAttribute("id",idName);
+    //checkBox_label.setAttribute("for",idName);
+    span.setAttribute("class","box-title");
+    span.innerText = doc.data().startDate.toDate().getFullYear()+"年"+
+    (doc.data().startDate.toDate().getMonth() + 1)+"月"+
+    doc.data().startDate.toDate().getDate()+"日" + " ～ " +
+    doc.data().endDate.toDate().getFullYear()+"年"+
+    (doc.data().endDate.toDate().getMonth()+1)+"月"+
+    doc.data().endDate.toDate().getDate()+"日";
+
+    checkBox_label.innerText = 
+    "trainingName: " + 
+    doc.data().trainingName +
+    "numberTimes: " + doc.data().numberTimes;
+    if(doc.data().valueType==0){
+        checkBox_label.innerText = checkBox_label.innerText + "回";
+    }else{
+        checkBox_label.innerText = checkBox_label.innerText + "秒";
+    }
+
+    pastD.append(div);
+    div.appendChild(span);
+    div.appendChild(checkBox);
+    div.appendChild(checkBox_label);}
+    );
 });
 
 
 
 })()
 
+// funciton getDate_toString(date){
+//     var dateString;
+//     dateString = date.toDate.getFullYear() + "/" + date.toDate.getMonth() + 
+//             "/" + date.toDate.getDate();
+//     return dateString;
+// }
 
 //色決め
 function judgeColor(num){
