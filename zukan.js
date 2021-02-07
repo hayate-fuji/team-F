@@ -28,21 +28,26 @@ const monsters = [
     {id:20,name:"hogehoge",image:"/image/2_bani.png"},
 ];
 
-// firestoreからモンスターの所持状況を取得
+(async () => { var db = firebase.firestore();
+  const zukanDoc = await db.collection("").doc("").get();
+    const zukan  = zukanDoc.data().have;
+    document.getElementById("zukan").innerText = zukan;
 
-const monsterListUl = document.getElementById('monsterList');
-monsters.forEach(monster => {
-    const div = document.createElement("div");
-    div.setAttribute('class','monster')
-    const li = document.createElement("li");
-    const img = document.createElement("img");
-    // ここでモンスターを所持していたらモンスターの画像を入れる
-    if(true){
-      img.setAttribute('src',monster.image);
-    }else{
-      img.setAttribute('src','/image/hatena.png');
-    }
-    li.append(img);
-    div.append(li);
-    monsterListUl.append(div);
-});
+  // firestoreからモンスターの所持状況を取得
+  const monsterListUl = document.getElementById('monsterList');
+  monsters.forEach(monster => {
+      const div = document.createElement("div");
+      div.setAttribute('class','monster')
+      const li = document.createElement("li");
+      const img = document.createElement("img");
+      // ここでモンスターを所持していたらモンスターの画像を入れる
+      if(id:1){
+        img.setAttribute('src',monster.image);
+      }else{
+        img.setAttribute('src','/image/hatena.png');
+      }
+      li.append(img);
+      div.append(li);
+      monsterListUl.append(div);
+  });
+)
