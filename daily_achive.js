@@ -37,7 +37,7 @@ docRef.get().then(function(doc) {
 db.collection("goal").get().then((querySnapshot)=>{
     today_to_String = today.getFullYear() + "-" + (1 + today.getMonth()) + "-" + today.getDate();
     
-    dayArea.innerHTML = today.getFullYear() + "/" + (1 + today.getMonth()) + "/" + today.getDay();;
+    dayArea.innerHTML = today.getFullYear() + "/" + (1 + today.getMonth()) + "/" + today.getDate();;
 
     console.log(querySnapshot);
     querySnapshot.forEach((doc) => {
@@ -47,6 +47,7 @@ db.collection("goal").get().then((querySnapshot)=>{
         };
     });
     todaysMenus.forEach((menu,i) => {
+        //追加する領域のID
         const checkArea = document.getElementById("checkbox_area");
 
         const div = document.createElement("div");
