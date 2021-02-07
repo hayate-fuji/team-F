@@ -114,12 +114,12 @@ function judgeColor(num){
 
 }
 
-var displayButton = document.getElementById("displaybutton");
-//クリックイベント
-displayButton.onclick = ()=>{
-    /*ここで得たselected_rangeで過去のデータ表示範囲を決定*/
-    var r_element = document.getElementById("range");
-    var selected_range = r_element.value;
-    console.log(selected_range);
+// var displayButton = document.getElementById("displaybutton");
+// //クリックイベント
+// displayButton.onclick = ()=>{
+//     /*ここで得たselected_rangeで過去のデータ表示範囲を決定*/
+//     var r_element = document.getElementById("range");
+//     var selected_range = r_element.value;
+//     console.log(selected_range);
 
-}
+// }
