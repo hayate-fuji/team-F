@@ -155,7 +155,4 @@ saveButton.onclick = ()=>{
         lastinputPoint = 0;
         console.log("Error getting document:", error);
     });
-    function readEvPoint(){
-        
-    }
 }
