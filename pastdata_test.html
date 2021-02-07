@@ -4,21 +4,16 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <link rel="stylesheet" href="style.css">
-        
-        <!-- <style>
+        <style>
             @media (min-width: 600px) {
                 #parent {
                     display: flex;
                 }
-                #child1 {
-                    flex-grow: 1;
-                }
-                #child2 { 
+                #childs {
                     flex-grow: 1;
                 }
             }
-        </style> -->
-            
+        </style>
         <style>
             @media (min-width: 600px) {
                 #parent2 {
@@ -34,24 +29,13 @@
         </style>
     </head>
     <body> 
-        <!-- <h2>表示範囲</h2>
-        <div>
-          <font size="4">表示範囲</font>
-	  
-        <select id="range">
-	     <option value="none">範囲を選択</option>
-	     <option value="lastweek">最近1週間</option>
-	     <option value="lastmonth">最近1か月</option>
-	    </select>
-	    <input type="button" value="表示"  id="displaybutton"> -->
-	    <!-- <script>
-	      function clickrBtn(){
-	      /*ここで得たselected_rangeで過去のデータ表示範囲を決定*/
-	      var r_element = document.getElementById("range");
-	      var selected_range = r_element.value;
-	      console.log(selected_range);
-	      }
-	    </script> -->
+        <div id="parent">
+            <button id="childs" style="width: 0px;" onclick="location.href='./index.html'">メインメニュー</button>
+            <button id="childs" style="width: 0px;" onclick="location.href='./daily_achive.html'">今日のトレーニング</button>
+            <button id="childs" style="width: 0px;" onclick="location.href='./pastdata_test.html'">過去のデータ</button>
+            <button id="childs" style="width: 0px;" onclick="location.href='./zukan.html'">図鑑</button>
+            <button id="childs" style="width: 0px;" onclick="location.href='./setting_goal.html'">目標設定</button>
+        </div>
         </div>
         
         
