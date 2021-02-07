@@ -28,17 +28,26 @@ const monsters = [
     {id:20,name:"hogehoge",image:"/image/2_bani.png"},
 ];
 
+(async()=>{
 // firestoreからモンスターの所持状況を取得
+var db = firebase.firestore();
 
 const monsterListUl = document.getElementById('monsterList');
+
+const characterbookDocs = await db.collection("characterbook").get();
+let characterbook = [];
+characterbookDocs.forEach(doc => {
+  characterbook.push(doc.data());
+});
 monsters.forEach(monster => {
     const div = document.createElement("div");
     div.setAttribute('class','monster')
     const li = document.createElement("li");
     const img = document.createElement("img");
     // ここでモンスターを所持していたらモンスターの画像を入れる
-    if(true){
-      img.setAttribute('src',monster.image);
+    const isRock = characterbook.find((c)=>c.id == monster.id).isRock;
+    if(isRock == "U"){
+      img.setAttribute('src',monsters[monster.id].image);
     }else{
       img.setAttribute('src','/image/hatena.png');
     }
@@ -46,3 +55,4 @@ monsters.forEach(monster => {
     div.append(li);
     monsterListUl.append(div);
 });
+})();
